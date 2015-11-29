@@ -13,11 +13,44 @@ NOTES:
 
 #include <stdio.h>
 
+void deletenode(struct node *head, int K);
+
 struct node {
 	int num;
 	struct node *next;
 };
 
-struct node * removeEveryKthNode(struct node *head, int K) {
-	return NULL;
+struct node * removeEveryKthNode(struct node *head, int K) 
+{
+	int i = K, len = 1;
+	struct node *temp = head;
+	if ((head == NULL) || (K == 1) || (K <= 0))
+		return NULL;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		len++;
+	}
+	len--;
+	temp = head;
+	while (i <= len)
+	{
+		deletenode(temp, i);
+		i += (K - 1);
+		len--;
+	}
+	return temp;
+}
+
+void deletenode(struct node *head, int K)
+{
+	struct node *ptr = head, *temp=head;
+	int i = 1;
+	while (i < K)
+	{
+		temp = ptr;
+		ptr = ptr->next;
+		i++;
+	}
+	temp->next = ptr->next;
 }

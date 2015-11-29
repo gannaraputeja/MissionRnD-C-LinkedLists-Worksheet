@@ -21,6 +21,21 @@ struct node {
 	struct node *next;
 };
 
-void sll_012_sort(struct node *head){
-	
+void sll_012_sort(struct node *head)
+{
+	struct node *i, *j;
+	int temp;
+	for (j = head; j->next != NULL; j = j->next)
+	{
+		for (i = head; i->next != NULL; i = i->next)
+		{
+			if (i->data > i->next->data)
+			{
+				temp = i->data;
+				i->data = i->next->data;
+				i->next->data = temp;
+			}
+		}
+
+	}
 }
